@@ -34,7 +34,7 @@ POWER_VM_DOWN_BEFORE_BACKUP=0
 ENABLE_HARD_POWER_OFF=0
 
 # if the above flag "ENABLE_HARD_POWER_OFF "is set to 1, then will look at this flag which is the # of iterations
-# the script will wait before executing a hard power off, this will be a multiple of 60seconds 
+# the script will wait before executing a hard power off, this will be a multiple of 60seconds
 # (e.g) = 3, which means this will wait up to 180seconds (3min) before it just powers off the VM
 ITER_TO_WAIT_SHUTDOWN=3
 
@@ -59,7 +59,7 @@ ALLOW_VMS_WITH_SNAPSHOTS_TO_BE_BACKEDUP=0
 
 ##########################################################
 # NON-PERSISTENT NFS-BACKUP ONLY
-# 
+#
 # ENABLE NON PERSISTENT NFS BACKUP 1=on, 0=off
 
 ENABLE_NON_PERSISTENT_NFS=0
@@ -202,7 +202,7 @@ logger() {
         fi
 
         if [[ "${EMAIL_LOG}" -eq 1 ]] ; then
-            echo -ne "${TIME} -- ${LOG_TYPE}: ${MSG}\r\n" >> "${EMAIL_LOG_OUTPUT}"      
+            echo -ne "${TIME} -- ${LOG_TYPE}: ${MSG}\r\n" >> "${EMAIL_LOG_OUTPUT}"
         fi
     fi
 }
@@ -431,7 +431,7 @@ getVMDKs() {
         #if valid, then we use the vmdk file
         if [[ $? -eq 0 ]]; then
             #verify disk is not independent
-            grep -i "^${SCSI_ID}.mode" "${VMX_PATH}" | grep -i "independent" > /dev/null 2>&1 
+            grep -i "^${SCSI_ID}.mode" "${VMX_PATH}" | grep -i "independent" > /dev/null 2>&1
             if [[ $? -eq 1 ]]; then
                 grep -i "^${SCSI_ID}.deviceType" "${VMX_PATH}" | grep -i "scsi-hardDisk" > /dev/null 2>&1
 
@@ -1043,7 +1043,7 @@ ghettoVCB() {
 
                         findVMDK "${VMDK}"
 
-                        if [[ $isVMDKFound -eq 1 ]] || [[ "${VMDK_FILES_TO_BACKUP}" == "all" ]]; then 
+                        if [[ $isVMDKFound -eq 1 ]] || [[ "${VMDK_FILES_TO_BACKUP}" == "all" ]]; then
                             #added this section to handle VMDK(s) stored in different datastore than the VM
                             echo ${VMDK} | grep "^/vmfs/volumes" > /dev/null 2>&1
                             if [[ $? -eq 0 ]] ; then
@@ -1092,7 +1092,7 @@ ghettoVCB() {
 
                                     if  [[ -z "${FORMAT_OPTION}" ]] ; then
                                         logger "debug" "${VMKFSTOOLS_CMD} -i \"${SOURCE_VMDK}\" -a \"${ADAPTER_FORMAT}\" \"${DESTINATION_VMDK}\""
-                                        ${VMKFSTOOLS_CMD} -i "${SOURCE_VMDK}" -a "${ADAPTER_FORMAT}" "${DESTINATION_VMDK}" > "${VMDK_OUTPUT}" 2>&1                  
+                                        ${VMKFSTOOLS_CMD} -i "${SOURCE_VMDK}" -a "${ADAPTER_FORMAT}" "${DESTINATION_VMDK}" > "${VMDK_OUTPUT}" 2>&1
                                     else
                                         logger "debug" "${VMKFSTOOLS_CMD} -i \"${SOURCE_VMDK}\" -a \"${ADAPTER_FORMAT}\" -d \"${FORMAT_OPTION}\" \"${DESTINATION_VMDK}\""
                                         ${VMKFSTOOLS_CMD} -i "${SOURCE_VMDK}" -a "${ADAPTER_FORMAT}" -d "${FORMAT_OPTION}" "${DESTINATION_VMDK}" > "${VMDK_OUTPUT}" 2>&1
@@ -1218,7 +1218,7 @@ ghettoVCB() {
                     then
                         chmod -R "${BACKUP_FILES_CHMOD}" "${VM_BACKUP_DIR}"
                     fi
-                    
+
                     #storage info after backup
                     storageInfo "after"
                 fi
@@ -1338,7 +1338,7 @@ sendMail() {
         fi
     fi
     if [[ "${SMTP}" -eq 1 ]] ; then
-        
+
         if [ "${EXIT}" -ne 0 ] && [ "${LOG_STATUS}" = "OK" ] ; then
             LOG_STATUS="ERROR"
         #    for i in ${EMAIL_TO}; do

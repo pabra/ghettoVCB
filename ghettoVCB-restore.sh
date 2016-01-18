@@ -162,7 +162,7 @@ ghettoVCBrestore() {
         fi
 
         #supports DIR or .TGZ from ghettoVCB.sh ONLY!
-        if [ ${VM_TO_RESTORE##*.} == 'gz' ]; then
+        if [ ${VM_TO_RESTORE##*.} == 'tgz' ]; then
             logger "GZ found, extracting ..."
             if [ -x /bin/pigz ]; then
                 logger "use pigz"

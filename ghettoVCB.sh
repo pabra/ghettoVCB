@@ -1144,7 +1144,7 @@ ghettoVCB() {
                 TMP_IFS=${IFS}
                 IFS=${ORIG_IFS}
                 if [[ ${ENABLE_COMPRESSION} -eq 1 ]] ; then
-                    COMPRESSED_ARCHIVE_FILE="${BACKUP_DIR}/${VM_NAME}-${VM_BACKUP_DIR_NAMING_CONVENTION}.gz"
+                    COMPRESSED_ARCHIVE_FILE="${BACKUP_DIR}/${VM_NAME}-${VM_BACKUP_DIR_NAMING_CONVENTION}.tgz"
 
                     logger "info" "Compressing VM backup \"${COMPRESSED_ARCHIVE_FILE}\"..."
                     # use parallel implementation of gzip if available (http://zlib.net/pigz/)

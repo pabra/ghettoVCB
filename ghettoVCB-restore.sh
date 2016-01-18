@@ -179,8 +179,8 @@ ghettoVCBrestore() {
                 VM_DISPLAY_NAME=$(grep -i "displayName" "${VM_TO_RESTORE}/${VM_ORIG_VMX}" | awk -F '=' '{print $2}' | sed 's/"//g' | sed -e 's/^[[:blank:]]*//;s/[[:blank:]]*$//')
                 VM_ORIG_FOLDER_NAME=$(echo "${VM_FOLDER_NAME}" | sed 's/-[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]_[0-1].*//g')
                 VM_VMX_NAME=${VM_ORIG_VMX}
-		VM_RESTORE_FOLDER_NAME=${VM_ORIG_FOLDER_NAME}
-		VM_RESTORE_VMX=${VM_ORIG_VMX}
+                VM_RESTORE_FOLDER_NAME=${VM_ORIG_FOLDER_NAME}
+                VM_RESTORE_VMX=${VM_ORIG_VMX}
             else
                 VM_DISPLAY_NAME=${RESTORE_VM_NAME}
                 VM_RESTORE_FOLDER_NAME=${RESTORE_VM_NAME}

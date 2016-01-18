@@ -296,7 +296,7 @@ sanityCheck() {
     # Enable multiextent VMkernel module if disk format is 2gbsparse (disabled by default in 5.1)
     if [[ "${DISK_BACKUP_FORMAT}" == "2gbsparse" ]] && [[ "${VER}" -eq 5 ]] || [[ "${VER}" == "6" ]]; then
         esxcli system module list | grep multiextent > /dev/null 2>&1
-	if [ $? -eq 1 ]; then
+    if [ $? -eq 1 ]; then
             logger "info" "multiextent VMkernel module is not loaded & is required for 2gbsparse, enabling ..."
             esxcli system module load -m multiextent
         fi
@@ -780,12 +780,12 @@ ghettoVCB() {
             #1 = readonly
             #0 = readwrite
             logger "debug" "Mounting NFS: ${NFS_SERVER}:${NFS_MOUNT} to /vmfs/volume/${NFS_LOCAL_NAME}"
-	    if [[ ${ESX_RELEASE} == "5.5.0" ]] || [[ ${ESX_RELEASE} == "6.0.0" ]] ; then
+        if [[ ${ESX_RELEASE} == "5.5.0" ]] || [[ ${ESX_RELEASE} == "6.0.0" ]] ; then
                 ${VMWARE_CMD} hostsvc/datastore/nas_create "${NFS_LOCAL_NAME}" "${NFS_VERSION}" "${NFS_MOUNT}" 0 "${NFS_SERVER}"
             else
                 ${VMWARE_CMD} hostsvc/datastore/nas_create "${NFS_LOCAL_NAME}" "${NFS_SERVER}" "${NFS_MOUNT}" 0
             fi
-	fi
+    fi
     fi
 
     captureDefaultConfigurations
@@ -940,7 +940,7 @@ ghettoVCB() {
                     $VMWARE_CMD vmsvc/snapshot.removeall ${VM_ID} > /dev/null 2>&1
                 fi
             fi
-    	    #nfs case and backup to root path of your NFS mount
+            #nfs case and backup to root path of your NFS mount
             if [[ ${ENABLE_NON_PERSISTENT_NFS} -eq 1 ]] ; then
                 BACKUP_DIR="/vmfs/volumes/${NFS_LOCAL_NAME}/${NFS_VM_BACKUP_DIR}/${VM_NAME}"
                 if [[ -z ${VM_NAME} ]] || [[ -z ${NFS_LOCAL_NAME} ]] || [[ -z ${NFS_VM_BACKUP_DIR} ]]; then

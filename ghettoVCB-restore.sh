@@ -1,4 +1,6 @@
-# Author: William Lam 
+#!/bin/ash
+
+# Author: William Lam
 # 08/18/2009
 # http://www.virtuallyghetto.com/
 ##################################################################

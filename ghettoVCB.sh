@@ -1,3 +1,5 @@
+#!/bin/ash
+
 # Author: William Lam
 # Created Date: 11/17/2008
 # http://www.virtuallyghetto.com/

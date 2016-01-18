@@ -164,7 +164,13 @@ ghettoVCBrestore() {
         #supports DIR or .TGZ from ghettoVCB.sh ONLY!
         if [ ${VM_TO_RESTORE##*.} == 'gz' ]; then
             logger "GZ found, extracting ..."
-            ${TAR} -xzf $VM_TO_RESTORE -C `dirname $VM_TO_RESTORE`
+            if [ -x /bin/pigz ]; then
+                logger "use pigz"
+                /bin/pigz --decompress --stdout $VM_TO_RESTORE | ${TAR} -xf - -C `dirname $VM_TO_RESTORE`
+            else
+                logger "use ungzip"
+                ${TAR} -xzf $VM_TO_RESTORE -C `dirname $VM_TO_RESTORE`
+            fi
             VM_TO_RESTORE=${VM_TO_RESTORE%.*}
         fi
         if [ -d "${VM_TO_RESTORE}" ]; then

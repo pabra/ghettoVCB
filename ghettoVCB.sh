@@ -1496,7 +1496,7 @@ if mkdir "${WORKDIR}"; then
     sendMail
 
     # practically redundant
-    [[ "${WORKDIR_DEBUG}" -eq 0 ]] && rm -rf "${WORKDIR}"
+    [[ "${WORKDIR_DEBUG}" -eq 0 ]] && [[ -d $WORKDIR ]] && rm -rf "${WORKDIR}"
     exit $EXIT
 else
     logger "info" "Failed to acquire lock, another instance of script may be running, giving up on ${WORKDIR}\n"
